@@ -1,7 +1,12 @@
 Data Controllers for Sage 9 Blade Templates
 ===========================================
+## Usage
+Run:
+~~~bash
+composer require carawebs/wp-metadata-accessor
+~~~
 
-## Setup
+## Theme Setup
 To load, include the following at the theme level:
 ~~~php
 <?php
