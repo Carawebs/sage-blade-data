@@ -1,0 +1,18 @@
+{
+    "name": "carawebs/sage-blade-data",
+    "description": "Data controllers for Sage 9 WordPress theme - insert data into Blade templates.",
+    "type": "library",
+    "license": "GPL-3.0",
+    "authors": [
+        {
+            "name": "David Egan",
+            "email": "david@carawebs.com"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "Carawebs\\SageBladeData\\": ""
+        }
+    },
+    "require": {}
+}
