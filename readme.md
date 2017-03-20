@@ -3,7 +3,7 @@ Data Controllers for Sage 9 Blade Templates
 ## Usage
 Run:
 ~~~bash
-composer require carawebs/wp-metadata-accessor
+composer require carawebs/sage-blade-data
 ~~~
 
 ## Theme Setup
