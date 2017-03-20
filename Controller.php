@@ -37,8 +37,11 @@ abstract class Controller implements \ArrayAccess
      */
     public function setData()
     {
+        $reflect = new \ReflectionClass($this);
+        $class = lcfirst($reflect->getShortName());
         $data = $this->dataToReturn();
         foreach ($data as $key => $value) {
+            $key = $class.ucfirst($key);
             $this[$key] = $value;
         }
     }
