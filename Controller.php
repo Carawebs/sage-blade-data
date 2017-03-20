@@ -63,7 +63,7 @@ abstract class Controller implements \ArrayAccess
     public function returnDataToBlade()
     {
         foreach ($this->targetViews as $view) {
-            add_filter('sage/template/'.$view.'/data', function($data) {
+            add_filter('carawebs/template/'.$view.'/data', function($data) {
                 return $this->data;
             });
         }

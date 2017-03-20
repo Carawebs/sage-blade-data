@@ -18,7 +18,7 @@ class Filters
             $potentialHooks = get_body_class();
             $data = [];
             foreach ($potentialHooks as $templateClass) {
-                $data[] = apply_filters("sage/template/{$templateClass}/data", NULL, $template);
+                $data[] = apply_filters("carawebs/template/{$templateClass}/data", NULL, $template);
             }
 
             // First run `array_filter` with no params to remove empty elements. Then
