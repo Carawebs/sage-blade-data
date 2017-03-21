@@ -20,6 +20,7 @@ class Filters
             foreach ($potentialHooks as $templateClass) {
                 $data[] = apply_filters("carawebs/template/{$templateClass}/data", NULL, $template);
             }
+            if (empty($data)) return;
 
             // First run `array_filter` with no params to remove empty elements. Then
             // run `array_merge(...)` on the result to simplify the array.
