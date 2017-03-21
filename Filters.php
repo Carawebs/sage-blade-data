@@ -18,21 +18,19 @@ class Filters
             $potentialHooks = get_body_class();
             $data = [];
             foreach ($potentialHooks as $templateClass) {
-                $data[] = apply_filters("carawebs/template/{$templateClass}/data", NULL, $template);
+                $datum = apply_filters("carawebs/template/{$templateClass}/data", NULL, $template);
+                if(empty($datum)) continue;
+                $data[] = $datum;
             }
-            if (empty($data)) return;
 
             // First run `array_filter` with no params to remove empty elements. Then
             // run `array_merge(...)` on the result to simplify the array.
-            $data = array_merge(...array_filter($data));
+            if (!empty($data)) {
+                $data = array_merge(...array_filter($data));
+            }
             echo \App\template($template, $data);
 
             return get_theme_file_path('index.php');
         }, PHP_INT_MAX);
-
-        /**
-         * Tell WordPress how to find the compiled path of comments.blade.php
-         */
-        add_filter('comments_template', 'App\\template_path');
     }
 }
