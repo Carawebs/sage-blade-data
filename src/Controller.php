@@ -4,12 +4,11 @@ namespace Carawebs\SageBladeData;
 /**
 *
 */
-abstract class Controller implements \ArrayAccess
+abstract class Controller
 {
-    public $data = [];
-
-    public function __construct($postMeta = NULL)
+    public function __construct(CommonData $dataObject, $postMeta = NULL)
     {
+        $this->dataObject = $dataObject;
         $this->postMeta = $postMeta ?? NULL;
         $this->setData();
         $this->setTargetViews();
@@ -32,17 +31,18 @@ abstract class Controller implements \ArrayAccess
     /**
      * Set data that will be returned to the view.
      *
-     * We can do `$this[$key] = $value` because the class implements the
-     * ArrayAccess interface.
+     * We can do `$this->dataObject[$key] = $value` because this object implements
+     * the ArrayAccess interface.
      */
     public function setData()
     {
         $reflect = new \ReflectionClass($this);
         $class = lcfirst($reflect->getShortName());
         $data = $this->dataToReturn();
+
         foreach ($data as $key => $value) {
             $key = $class.ucfirst($key);
-            $this[$key] = $value;
+            $this->dataObject[$key] = $value;
         }
     }
 
@@ -64,28 +64,8 @@ abstract class Controller implements \ArrayAccess
     {
         foreach ($this->targetViews as $view) {
             add_filter('carawebs/template/'.$view.'/data', function($data) {
-                return $this->data;
+                return $this->dataObject->data;
             });
         }
-    }
-
-    public function offsetExists ($offset) {
-        return isset($this->data[$offset]);
-    }
-
-    public function offsetGet ($offset) {
-        return isset($this->data[$offset]) ? $this->data[$offset] : null;
-    }
-
-    public function offsetSet ($offset, $value) {
-        if (is_null($offset)) {
-            $this->data[] = $value;
-        } else {
-            $this->data[$offset] = $value;
-        }
-    }
-
-    public function offsetUnset ($offset) {
-        unset($this->data[$offset]);
     }
 }
