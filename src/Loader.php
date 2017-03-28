@@ -59,7 +59,6 @@ class Loader
             }
         }
         $this->classes = $classes;
-        var_dump($this->classes);
     }
 
     /**
