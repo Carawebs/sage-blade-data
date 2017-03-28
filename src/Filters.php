@@ -16,7 +16,7 @@ class Filters
             $potentialHooks = get_body_class();
             $data = [];
             foreach ($potentialHooks as $templateClass) {
-                $datum = apply_filters("carawebs/template/{$templateClass}/data", NULL, $template);
+                $datum = apply_filters('carawebs/template/{$templateClass}/data', NULL, $template);
                 if(empty($datum)) continue;
                 $data[] = $datum;
             }
