@@ -6,12 +6,10 @@ namespace Carawebs\SageBladeData;
  */
 class Filters
 {
-
-    function __construct()
-    {
-        //$this->init();
-    }
-
+    /**
+     * Hook data to WordPress 'template_include' filter.
+     * @return void
+     */
     public function init()
     {
         add_filter('template_include', function ($template) {
