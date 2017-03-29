@@ -85,3 +85,24 @@ class FrontPage extends Controller
 }
 ~~~
 The parent class optionally receives an object that controls post metadata, represented by `$this->postMeta`. You can ignore this if you like and build your own data-fetchers, but this is a good way of separating concerns.
+
+## Accessing Data in Blade Templates
+Because multiple controllers can add data to a single blade view, data variables are prefixed by the class name and camel cased.
+
+For example, if you define:
+~~~php
+class About extends Controller
+{
+    public function targetTemplates()
+    {
+        return ['about'];
+    }
+    public function dataToReturn()
+    {
+        return [
+            'intro' => "Hello World",
+        ];
+    }
+}
+~~~
+...you would access the defined variable in blade as `$aboutIntro`.
