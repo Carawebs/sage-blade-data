@@ -8,11 +8,29 @@ abstract class Controller
 {
     public function __construct(CommonData $dataObject, $postMeta = NULL)
     {
-        $this->dataObject = $dataObject;
-        $this->postMeta = $postMeta ?? NULL;
-        $this->setData();
         $this->setTargetViews();
-        $this->returnDataToBlade();
+        if ($this->shouldThisRun()){
+            $this->dataObject = $dataObject;
+            $this->postMeta = $postMeta ?? NULL;
+            $this->setData();
+            $this->returnDataToBlade();
+        };
+    }
+
+    /**
+     * If the current target view is not a body class, return false.
+     *
+     * This stops controller logic running unecessarily.
+     *
+     * @return boolean
+     */
+    private function shouldThisRun()
+    {
+        if (array_intersect(get_body_class(), $this->targetViews)) {
+            return true;
+        } else {
+            return false;
+        }
     }
 
     /**
