@@ -27,6 +27,7 @@ class Filters
                 $data = array_merge(...array_filter($data));
             }
             echo \App\template($template, $data);
+            //echo template($template, $data);
 
             return get_theme_file_path('index.php');
         }, PHP_INT_MAX);
