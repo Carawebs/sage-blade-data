@@ -9,10 +9,12 @@ composer require carawebs/sage-blade-data
 ## Theme Setup
 To load, include the following at the theme level:
 ```php
+<?php
 namespace App;
 
 use \Carawebs\SageBladeData\Loader;
 use \Carawebs\SageBladeData\Filters;
+// Optionally, see https://github.com/Carawebs/wp-metadata-accessor 
 use \Carawebs\DataAccessor\PostMetaData;
 
 /**
@@ -26,7 +28,11 @@ add_action('wp', function() {
 
 You could create a new file to contain this - remember to add such a file to the `array_map()` function in `functions.php`.
 
-Create a directory in your theme (e.g. `/Carawebs/Controllers`). This will be your controller namespace. Reference this in the theme `composer.json` to enable autoloading. For example:
+Create a directory in your theme (e.g. `/Carawebs/Controllers`). This will be your controller namespace.
+
+Note that by default the path to the controllers directory is `get_template_directory() . '/Carawebs/Controllers'`. This is filtered by 'carawebs-controllers/path-to-controllers'.
+
+Reference this in the theme `composer.json` to enable autoloading. For example:
 
 ```js
 // composer.json
@@ -42,7 +48,7 @@ Then run:
 ```BASH
 composer dump-autoload
 ```
-...to regenerate up Composer's autoload files.
+...to regenerate Composer's autoload files.
 
 ## Usage
 Controller classes must extend `Carawebs\SageBladeData\Controller`.
@@ -63,6 +69,7 @@ use Carawebs\SageBladeData\Controller;
  */
 class FrontPage extends Controller
 {
+    // Data available on 'home' and 'page' templates:
     public function targetTemplates()
     {
         return ['home', 'page'];
@@ -75,6 +82,8 @@ class FrontPage extends Controller
             'description'=>'text'
         ];
         return [
+            // Post metadata from https://github.com/Carawebs/wp-metadata-accessor
+            // You can just access using ACF functions or similar.
             'pageIntro' => $this->postMeta->getField('metafield'),
             'intro' => $this->postMeta->getField('intro'),
             'carouselData' => $this->postMeta->getRepeaterField('slider', $carouselSubfields),
