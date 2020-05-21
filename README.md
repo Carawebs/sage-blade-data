@@ -117,4 +117,6 @@ class About extends Controller
     }
 }
 ```
-...you would access the defined variable in blade as `$aboutIntro`.
+https://laravel.com/docs/7.x/blade...you would access the defined variable in blade as `$aboutIntro`.
+
+[1]: https://laravel.com/docs/7.x/blade
