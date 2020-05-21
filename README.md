@@ -1,5 +1,11 @@
 Data Controllers for Sage 9 Blade Templates
 ===========================================
+Blade is [the simple, yet powerful templating engine provided with Laravel][1].
+
+Using Blade within Laravel is simple - but using it within a WordPress project requires some extra work to make your data available in the view.
+
+The Roots Sage theme uses Blade, and this plugin allows you to select which resources have access to data. This may be useful if the same data needs to be presented in different views. 
+
 ## Usage
 Run:
 ```bash
