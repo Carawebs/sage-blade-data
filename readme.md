@@ -20,7 +20,6 @@ use \Carawebs\DataAccessor\PostMetaData;
 */
 add_action('wp', function() {
     new Loader(new Filters, new PostMetaData);
-    //new Loader(new Filters);
 });
 ```
 
